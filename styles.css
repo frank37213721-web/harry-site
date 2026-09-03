@@ -214,29 +214,28 @@ section[id] { scroll-margin-top: 84px; }
 .intro-text > p:first-child { font-size: 1.25rem; font-weight: 600; color: var(--ink); margin-top: 0; }
 
 .intro-grid {
-  max-width: 940px;
+  max-width: 760px;
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: clamp(28px, 5vw, 60px);
+  grid-template-columns: 132px 1fr;
+  gap: clamp(18px, 3vw, 32px);
   align-items: start;
 }
 
 .portrait {
   margin: 0;
-  align-self: center;
+  align-self: start;
 }
 .portrait img {
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 22px 26px rgba(42, 37, 33, .16));
+  filter: drop-shadow(0 12px 16px rgba(42, 37, 33, .16));
   transition: transform .5s var(--ease);
 }
-.portrait:hover img { transform: translateY(-6px); }
+.portrait:hover img { transform: translateY(-4px); }
 
 @media (max-width: 720px) {
-  .intro-grid { grid-template-columns: 1fr; gap: 4px; }
-  .portrait { width: min(260px, 66%); margin: 0 auto 4px; }
+  .intro-grid { grid-template-columns: 104px 1fr; gap: 18px; }
 }
 
 .pull {
