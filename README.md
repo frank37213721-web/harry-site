@@ -1,45 +1,52 @@
 # 北極星 Polaris ｜ 謝孟翔 Harry 個人網站
 
-十年理化／物理教師、師鐸獎得主謝孟翔（Harry）的個人影響力網站「北極星 Polaris」（第一版：靜態單頁）。
+十年理化／物理教師、師鐸獎得主謝孟翔（Harry）的個人影響力網站「北極星 Polaris」。
 
 北極星：**讓台灣的科學教育，從成績篩選回到好奇心與思考。**
 
 ## 技術
 
-- 純 HTML / CSS / 少量原生 JS，無框架、無建置步驟、無後端
-- 系統字型，零外部請求，Mobile-first
-- 進場動畫使用 `IntersectionObserver`，並尊重 `prefers-reduced-motion`
-- 順應系統深色模式
+- 首頁純 HTML / CSS / 少量原生 JS，無框架、無後端
+- 文章用 Markdown 檔（`content/articles/`），部署時由 `build.mjs` 產生頁面
+- 系統字型、Mobile-first、進場動畫尊重 `prefers-reduced-motion`、順應系統深色模式
 
 ## 檔案
 
 | 檔案 | 說明 |
 |------|------|
-| `index.html` | 全部頁面內容 |
-| `styles.css` | 樣式與動畫 |
+| `index.html` | 首頁內容 |
+| `styles.css` | 全站樣式與動畫 |
 | `main.js` | 捲動陰影、進場動畫、錨點平滑捲動 |
-| `vercel.json` | 靜態部署設定（快取、安全標頭） |
+| `build.mjs` | 建置腳本：Markdown → 文章頁，靜態檔複製到 `dist/` |
+| `content/articles/*.md` | 文章原始檔 |
+| `admin/` | Decap CMS（`/admin/` 網頁登入編輯器） |
+| `api/auth.js`、`api/callback.js` | GitHub OAuth（給 `/admin/` 用） |
+| `vercel.json` | 部署設定（build 指令、輸出目錄、快取、安全標頭） |
 
 ## 本機預覽
 
-直接用瀏覽器打開 `index.html` 即可，或起一個簡單伺服器：
-
 ```bash
-python3 -m http.server 8000
+npm install     # 第一次
+npm run build   # 產生 dist/
+cd dist && python3 -m http.server 8080
 ```
 
-然後開 http://localhost:8000
+本機沒有 Vercel 的 cleanUrls，子頁網址要帶 `.html`（例如 `/articles/welcome.html`）；正式站不用。
 
 ## 部署（Vercel）
 
-1. 這個資料夾已推上 GitHub。
-2. 到 <https://vercel.com/new> 匯入這個 repo。
-3. Framework Preset 選 **Other**，Build Command 留空，Output Directory 留空（根目錄即網站）。
-4. Deploy。之後每次 `git push` 到 `main` 會自動重新部署。
+已接 GitHub，`git push` 到 `main` 會自動部署。Vercel 專案設定：
 
-## 之後要改內容
+- Build Command：`npm run build`（已寫在 `vercel.json`）
+- Output Directory：`dist`（已寫在 `vercel.json`）
 
-編輯 `index.html` 裡對應的區塊文字即可，改完 commit + push。
+## 寫文章 / `/admin` 登入編輯器
 
-- 聯絡信箱：搜尋 `harryhsieh@icloud.com`
-- 文章上線後：把「即將發表」區塊的 `<li>` 換成連結
+見 **[ARTICLES-SETUP.md](ARTICLES-SETUP.md)**。
+
+- 快速版：在 `content/articles/` 加一個 `.md` 檔（含 `title` / `date` / `slug` / `draft` 等 front matter），`git push` 即上線。
+- `/admin/` 網頁編輯器需要一次性的 GitHub OAuth 設定，步驟見上面文件。
+
+## 之後要改首頁內容
+
+編輯 `index.html` 對應區塊，commit + push。聯絡信箱搜尋 `harryhsieh@icloud.com`。

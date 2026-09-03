@@ -1,0 +1,65 @@
+# Decap CMS 設定 — 詳細說明見 ARTICLES-SETUP.md
+#
+# 部署後請把下面三處的 __YOUR_DOMAIN__ 換成你的正式網域，
+# 例如 harry-site.vercel.app（結尾不要加斜線）。
+
+backend:
+  name: github
+  repo: frank37213721-web/harry-site
+  branch: main
+  base_url: https://__YOUR_DOMAIN__
+  auth_endpoint: api/auth
+
+site_url: https://__YOUR_DOMAIN__
+display_url: https://__YOUR_DOMAIN__
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+locale: zh_Hant
+
+collections:
+  - name: articles
+    label: 文章
+    label_singular: 文章
+    folder: content/articles
+    create: true
+    slug: "{{fields.slug}}"
+    summary: "{{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: 標題, widget: string }
+      - {
+          name: date,
+          label: 發布日期,
+          widget: datetime,
+          date_format: "YYYY-MM-DD",
+          time_format: false,
+          format: "YYYY-MM-DD",
+        }
+      - {
+          name: slug,
+          label: 網址代稱,
+          widget: string,
+          hint: "只用英文小寫、數字、連字號，例如 why-ai-teaching。這會變成文章網址 /articles/why-ai-teaching。",
+        }
+      - {
+          name: summary,
+          label: 摘要（文章列表與分享時顯示）,
+          widget: text,
+          required: false,
+        }
+      - { name: tag, label: 分類標籤, widget: string, required: false }
+      - {
+          name: draft,
+          label: "草稿（勾選＝不公開）",
+          widget: boolean,
+          default: true,
+        }
+      - {
+          name: external,
+          label: "外部文章連結（發表在 Medium 等平台時貼網址；填了就用不到下面的內文）",
+          widget: string,
+          required: false,
+        }
+      - { name: body, label: 內文, widget: markdown, required: false }
