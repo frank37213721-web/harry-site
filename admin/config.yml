@@ -1,17 +1,17 @@
 # Decap CMS 設定 — 詳細說明見 ARTICLES-SETUP.md
 #
-# 正式網域為 harryhsieh.com（在 Cloudflare 註冊、DNS 指向 Vercel）。
-# 若網域尚未接好、需要先用 *.vercel.app 測試，把下面三處暫時改成該網址即可。
+# 正式網域：www.harryhsieh.com 為 Vercel 主網域（harryhsieh.com 會 308 轉到 www）。
+# 這三處網域必須跟「實際開啟後台的網址」以及 GitHub OAuth App 的 Redirect URI 完全一致。
 
 backend:
   name: github
   repo: frank37213721-web/harry-site
   branch: main
-  base_url: https://harryhsieh.com
+  base_url: https://www.harryhsieh.com
   auth_endpoint: api/auth
 
-site_url: https://harryhsieh.com
-display_url: https://harryhsieh.com
+site_url: https://www.harryhsieh.com
+display_url: https://www.harryhsieh.com
 
 media_folder: assets/uploads
 public_folder: /assets/uploads
