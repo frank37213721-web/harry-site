@@ -41,7 +41,8 @@ collections:
           name: slug,
           label: 網址代稱,
           widget: string,
-          hint: "只用英文小寫、數字、連字號，例如 why-ai-teaching。這會變成文章網址 /articles/why-ai-teaching。",
+          pattern: ["^[a-z0-9-]+$", "只能用英文小寫、數字、連字號（不能有空格、點、中文）"],
+          hint: "例如 why-ai-teaching。這會變成文章網址 /articles/why-ai-teaching，每篇要不一樣。",
         }
       - {
           name: summary,
@@ -52,9 +53,9 @@ collections:
       - { name: tag, label: 分類標籤, widget: string, required: false }
       - {
           name: draft,
-          label: "草稿（勾選＝不公開）",
+          label: "隱藏這篇（勾選＝不出現在網站上；預設會發佈）",
           widget: boolean,
-          default: true,
+          default: false,
         }
       - {
           name: external,
