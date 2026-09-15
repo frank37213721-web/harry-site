@@ -26,6 +26,73 @@ const esc = (s = "") =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
   );
 
+// ---- 文章大綱（TOC）：從 ## / ### 標題抽出，產生錨點 id ----
+const slugify = (text, used) => {
+  let s = String(text)
+    .trim()
+    .replace(/[*_`]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/["'<>&，。！？：；、「」『』（）()\[\]{}《》【】〈〉…—·\/\\]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+  if (!s) s = "sec";
+  s = s.slice(0, 40).replace(/-+$/, "");
+  let id = s;
+  let n = 2;
+  while (used.has(id)) id = `${s}-${n++}`;
+  used.add(id);
+  return id;
+};
+
+// 用 marked 的 lexer 找出 h2/h3，配 id；再把同樣的 id 塞回渲染出的 HTML
+const renderArticle = (markdownContent) => {
+  const used = new Set();
+  const headings = [];
+  for (const t of marked.lexer(markdownContent || "")) {
+    if (t.type === "heading" && (t.depth === 2 || t.depth === 3)) {
+      const text = String(t.text || "").replace(/[*_`]/g, "");
+      headings.push({ depth: t.depth, id: slugify(text, used), text });
+    }
+  }
+  let i = 0;
+  const html = marked.parse(markdownContent || "").replace(/<h([23])>/g, (m, d) => {
+    const h = headings[i++];
+    return h ? `<h${d} id="${esc(h.id)}">` : m;
+  });
+  return { html, headings };
+};
+
+const buildTocTree = (headings) => {
+  const tree = [];
+  let current = null;
+  for (const h of headings) {
+    if (h.depth === 2) {
+      current = { ...h, subs: [] };
+      tree.push(current);
+    } else if (current) {
+      current.subs.push(h);
+    } else {
+      tree.push({ ...h, subs: [] });
+    }
+  }
+  return tree;
+};
+
+const renderToc = (headings) => {
+  if (headings.length < 3) return "";
+  const items = buildTocTree(headings)
+    .map((h) => {
+      const subs = h.subs.length
+        ? `<ul class="toc-sub">${h.subs
+            .map((s) => `<li><a href="#${esc(s.id)}">${esc(s.text)}</a></li>`)
+            .join("")}</ul>`
+        : "";
+      return `<li><a href="#${esc(h.id)}">${esc(h.text)}</a>${subs}</li>`;
+    })
+    .join("");
+  return `<nav class="toc" aria-label="文章大綱"><p class="toc-title">本文大綱</p><ol class="toc-list">${items}</ol></nav>`;
+};
+
 const HEADER = `
 <a class="skip-link" href="#main">跳到主要內容</a>
 <header class="site-header" id="siteHeader">
@@ -84,25 +151,45 @@ const fmtDate = (v) => {
   ).padStart(2, "0")}`;
 };
 
-const articlePage = (a) =>
-  page({
-    title: `${a.title}｜${SITE}`,
-    description: a.summary || a.title,
-    ogType: "article",
-    content: `
+const articlePage = (a) => {
+  const toc = renderToc(a.headings);
+  const mainCol = `
+        <p class="post-meta reveal">${esc(a.dateText)}${a.tag ? ` ｜ ${esc(a.tag)}` : ""}</p>
+        <h1 class="reveal">${esc(a.title)}</h1>
+        ${a.summary ? `<p class="post-summary reveal">${esc(a.summary)}</p>` : ""}
+        <div class="article-body">
+${a.html}
+        </div>
+        <a class="back-link" href="/articles">← 回文章列表</a>`;
+
+  const content = toc
+    ? `
+  <article class="section article">
+    <div class="wrap article-wrap">
+      <a class="back-link" href="/articles">← 回文章列表</a>
+      <div class="article-shell">
+        ${toc}
+        <div class="article-main">
+${mainCol}
+        </div>
+      </div>
+    </div>
+  </article>`
+    : `
   <article class="section article">
     <div class="wrap narrow">
       <a class="back-link" href="/articles">← 回文章列表</a>
-      <p class="post-meta reveal">${esc(a.dateText)}${a.tag ? ` ｜ ${esc(a.tag)}` : ""}</p>
-      <h1 class="reveal">${esc(a.title)}</h1>
-      ${a.summary ? `<p class="post-summary reveal">${esc(a.summary)}</p>` : ""}
-      <div class="article-body">
-${a.html}
-      </div>
-      <a class="back-link" href="/articles">← 回文章列表</a>
+${mainCol}
     </div>
-  </article>`,
+  </article>`;
+
+  return page({
+    title: `${a.title}｜${SITE}`,
+    description: a.summary || a.title,
+    ogType: "article",
+    content,
   });
+};
 
 const card = (a) => {
   const inner = `
@@ -176,6 +263,7 @@ async function main() {
       continue;
     }
     const slug = String(data.slug || file.replace(/\.md$/, "")).trim();
+    const { html, headings } = renderArticle(content);
     articles.push({
       title: data.title,
       summary: data.summary || "",
@@ -184,7 +272,8 @@ async function main() {
       external: data.external || "",
       date: data.date ? new Date(data.date) : new Date(0),
       dateText: fmtDate(data.date),
-      html: marked.parse(content || ""),
+      html,
+      headings,
     });
   }
   articles.sort((a, b) => b.date - a.date);

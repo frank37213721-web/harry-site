@@ -50,4 +50,35 @@
       history.replaceState(null, "", id);
     });
   });
+
+  // 文章大綱（TOC）：捲動時高亮目前所在的段落
+  var tocList = document.querySelector(".toc-list");
+  if (tocList && "IntersectionObserver" in window) {
+    var tocLinks = Array.prototype.slice.call(tocList.querySelectorAll("a"));
+    var targets = tocLinks
+      .map(function (a) {
+        var el = document.getElementById(a.getAttribute("href").slice(1));
+        return el ? { link: a, el: el } : null;
+      })
+      .filter(Boolean);
+
+    if (targets.length) {
+      var setActive = function (link) {
+        tocLinks.forEach(function (a) { a.classList.remove("active"); });
+        if (link) link.classList.add("active");
+      };
+      var tocObserver = new IntersectionObserver(
+        function (entries) {
+          var visible = entries
+            .filter(function (e) { return e.isIntersecting; })
+            .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+          if (!visible.length) return;
+          var top = targets.filter(function (t) { return t.el === visible[0].target; })[0];
+          if (top) setActive(top.link);
+        },
+        { rootMargin: "-96px 0px -70% 0px", threshold: 0 }
+      );
+      targets.forEach(function (t) { tocObserver.observe(t.el); });
+    }
+  }
 })();
