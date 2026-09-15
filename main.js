@@ -51,6 +51,35 @@
     });
   });
 
+  // 文章大綱（TOC）：可彈出／收起的固定面板
+  var tocToggle = document.getElementById("tocToggle");
+  var tocPanel = document.getElementById("tocPanel");
+  var tocBackdrop = document.getElementById("tocBackdrop");
+  var tocPanelClose = document.getElementById("tocPanelClose");
+
+  if (tocToggle && tocPanel && tocBackdrop) {
+    var setTocOpen = function (open) {
+      tocPanel.classList.toggle("open", open);
+      tocBackdrop.classList.toggle("open", open);
+      tocToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.classList.toggle("toc-open", open);
+    };
+    tocToggle.addEventListener("click", function () {
+      setTocOpen(!tocPanel.classList.contains("open"));
+    });
+    if (tocPanelClose) {
+      tocPanelClose.addEventListener("click", function () { setTocOpen(false); });
+    }
+    tocBackdrop.addEventListener("click", function () { setTocOpen(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setTocOpen(false);
+    });
+    // 點了大綱裡的段落連結，跳過去後自動收起面板
+    tocPanel.querySelectorAll(".toc-list a").forEach(function (a) {
+      a.addEventListener("click", function () { setTocOpen(false); });
+    });
+  }
+
   // 文章大綱（TOC）：捲動時高亮目前所在的段落
   var tocList = document.querySelector(".toc-list");
   if (tocList && "IntersectionObserver" in window) {

@@ -78,6 +78,8 @@ const buildTocTree = (headings) => {
   return tree;
 };
 
+// 大綱做成可彈出/收起的固定面板（position: fixed），
+// 開關按鈕本身也是 fixed，捲動頁面時都不會被捲走。
 const renderToc = (headings) => {
   if (headings.length < 3) return "";
   const items = buildTocTree(headings)
@@ -90,7 +92,17 @@ const renderToc = (headings) => {
       return `<li><a href="#${esc(h.id)}">${esc(h.text)}</a>${subs}</li>`;
     })
     .join("");
-  return `<nav class="toc" aria-label="文章大綱"><p class="toc-title">本文大綱</p><ol class="toc-list">${items}</ol></nav>`;
+
+  return `
+    <button type="button" class="toc-toggle" id="tocToggle" aria-expanded="false" aria-controls="tocPanel">
+      <span class="toc-toggle-icon" aria-hidden="true">☰</span>大綱
+    </button>
+    <div class="toc-backdrop" id="tocBackdrop"></div>
+    <nav class="toc-panel" id="tocPanel" aria-label="文章大綱">
+      <button type="button" class="toc-panel-close" id="tocPanelClose" aria-label="關閉大綱">✕</button>
+      <p class="toc-title">本文大綱</p>
+      <ol class="toc-list">${items}</ol>
+    </nav>`;
 };
 
 const HEADER = `
@@ -153,33 +165,17 @@ const fmtDate = (v) => {
 
 const articlePage = (a) => {
   const toc = renderToc(a.headings);
-  const mainCol = `
-        <p class="post-meta reveal">${esc(a.dateText)}${a.tag ? ` ｜ ${esc(a.tag)}` : ""}</p>
-        <h1 class="reveal">${esc(a.title)}</h1>
-        ${a.summary ? `<p class="post-summary reveal">${esc(a.summary)}</p>` : ""}
-        <div class="article-body">
-${a.html}
-        </div>
-        <a class="back-link" href="/articles">← 回文章列表</a>`;
-
-  const content = toc
-    ? `
-  <article class="section article">
-    <div class="wrap article-wrap">
-      <a class="back-link" href="/articles">← 回文章列表</a>
-      <div class="article-shell">
-        ${toc}
-        <div class="article-main">
-${mainCol}
-        </div>
-      </div>
-    </div>
-  </article>`
-    : `
-  <article class="section article">
+  const content = `
+  <article class="section article">${toc}
     <div class="wrap narrow">
       <a class="back-link" href="/articles">← 回文章列表</a>
-${mainCol}
+      <p class="post-meta reveal">${esc(a.dateText)}${a.tag ? ` ｜ ${esc(a.tag)}` : ""}</p>
+      <h1 class="reveal">${esc(a.title)}</h1>
+      ${a.summary ? `<p class="post-summary reveal">${esc(a.summary)}</p>` : ""}
+      <div class="article-body">
+${a.html}
+      </div>
+      <a class="back-link" href="/articles">← 回文章列表</a>
     </div>
   </article>`;
 

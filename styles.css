@@ -449,36 +449,93 @@ section[id] { scroll-margin-top: 84px; }
 .article-body hr { border: none; border-top: 1px solid var(--line); margin: 2.4em 0; }
 .article-body h2[id], .article-body h3[id] { scroll-margin-top: 90px; }
 
-/* ---------- 文章大綱側欄 ---------- */
-.article-wrap { max-width: 1000px; }
-.article-shell {
-  display: grid;
-  grid-template-columns: 210px minmax(0, 700px);
-  gap: clamp(24px, 4vw, 56px);
-  align-items: start;
+/* ---------- 文章大綱（可彈出/收起的固定面板） ----------
+   toggle 按鈕、遮罩、面板都是 position: fixed，相對「視窗」定位，
+   所以捲動文章內容時三者都會留在原地，不會被捲走。 */
+.toc-toggle {
+  position: fixed;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  padding: 11px 18px 11px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: .86rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  cursor: pointer;
+  box-shadow: 0 12px 28px -16px rgba(42, 37, 33, .4);
+  transition: color .2s var(--ease), border-color .2s var(--ease), opacity .2s var(--ease);
 }
-.article-main { min-width: 0; }
+.toc-toggle:hover { color: var(--accent-deep); border-color: var(--accent); }
+.toc-toggle-icon { font-size: 1rem; line-height: 1; }
+/* 面板打開時把開關鈕藏起來，避免疊在面板內容上；用面板自己的 ✕ 或遮罩關閉 */
+body.toc-open .toc-toggle { opacity: 0; pointer-events: none; }
 
-.toc {
-  position: sticky;
-  top: 92px;
-  border-left: 2px solid var(--line);
-  padding-left: 1.1em;
-  font-size: .87rem;
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
+.toc-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 38;
+  background: rgba(28, 24, 20, .3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s var(--ease);
 }
+.toc-backdrop.open { opacity: 1; pointer-events: auto; }
+
+.toc-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 39;
+  width: min(300px, 84vw);
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  background: var(--paper);
+  border-right: 1px solid var(--line);
+  box-shadow: 16px 0 36px -22px rgba(42, 37, 33, .45);
+  padding: 92px 28px 40px;
+  transform: translateX(-105%);
+  transition: transform .32s var(--ease);
+}
+.toc-panel.open { transform: translateX(0); }
+
+.toc-panel-close {
+  position: absolute;
+  top: 26px;
+  right: 24px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: none;
+  color: var(--ink-faint);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.toc-panel-close:hover { color: var(--accent); border-color: var(--accent); }
+
 .toc-title {
-  margin: 0 0 .7em;
-  font-size: .72rem;
-  letter-spacing: .16em;
+  margin: 0 0 1em;
+  font-size: .74rem;
+  letter-spacing: .18em;
   color: var(--accent);
   font-weight: 600;
 }
 .toc-list, .toc-sub { list-style: none; margin: 0; padding: 0; }
-.toc-list > li { margin: 0 0 .6em; }
+.toc-list > li { margin: 0 0 .7em; }
 .toc-list a {
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   line-height: 1.5;
   display: inline-block;
   transition: color .2s var(--ease);
@@ -486,21 +543,22 @@ section[id] { scroll-margin-top: 84px; }
 .toc-list a:hover { color: var(--ink); }
 .toc-list a.active { color: var(--accent-deep); font-weight: 600; }
 .toc-sub { margin: .4em 0 0 .1em; padding-left: .9em; border-left: 1px solid var(--line); }
-.toc-sub li { margin: 0 0 .45em; }
+.toc-sub li { margin: 0 0 .5em; }
 .toc-sub a { font-size: .92em; }
 
-@media (max-width: 900px) {
-  .article-shell { grid-template-columns: 1fr; gap: 0; }
-  .toc {
-    position: static;
-    max-height: none;
-    border-left: none;
-    padding: 16px 20px;
-    margin: 0 0 2.2em;
-    background: var(--paper-2);
-    border: 1px solid var(--line);
-    border-radius: 12px;
+body.toc-open { overflow: hidden; }
+
+@media (max-width: 640px) {
+  /* 垂直置中的按鈕在手機上會疊到內文，改放左下角，離開螢幕正中央的文字區 */
+  .toc-toggle {
+    left: 16px;
+    top: auto;
+    bottom: 22px;
+    transform: none;
+    padding: 10px 16px 10px 14px;
+    font-size: .82rem;
   }
+  .toc-panel { padding-top: 84px; }
 }
 
 /* ---------- 焦點樣式 ---------- */
