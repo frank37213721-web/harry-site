@@ -2,10 +2,11 @@
 title: 教學學習筆記（一）：AI 蜜月期過了：指揮 AI 比學工具重要 100 倍
 date: 2026-09-15
 slug: edumemo1
-summary: |
+summary: |-
   《陳修平的師父商學院》× 李佳達（二訪）｜對談精修稿
+  對談原始連結：https://www.youtube.com/watch?v=RvRDzrHsM2U&t=2810s
 draft: false
-external: https://www.youtube.com/watch?v=RvRDzrHsM2U&t=2810s
+external: ""
 ---
 ## 一、蜜月期結束：模型越來越強，效果卻沒有增加
 
