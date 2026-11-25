@@ -5,9 +5,42 @@
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "workshop.harryhsieh.com" }],
+      "destination": "/teachandlearning",
+      "permanent": false
+    },
+    {
+      "source": "/register",
+      "has": [{ "type": "host", "value": "workshop.harryhsieh.com" }],
+      "destination": "/teachandlearning/register",
+      "permanent": false
+    },
+    {
+      "source": "/workshop/:path*",
+      "has": [{ "type": "host", "value": "(www\\.)?harryhsieh\\.com" }],
+      "destination": "https://workshop.harryhsieh.com/:path*",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "workshop.harryhsieh.com" }],
+      "destination": "/workshop/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/(teachandlearning|workshop/teachandlearning)/og.png",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400" }
       ]

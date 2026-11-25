@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>回到教與學的本質｜系列工作坊</title>
+<meta name="description" content="當答案唾手可得，學生需要老師設計的，是值得投入的學習經驗與帶得走的思考習慣。11/21、11/29 於高雄市中正高中，洪逸文老師與黃禮宏老師陪你把自己的課往這個方向調整。">
+<link rel="canonical" href="https://workshop.harryhsieh.com/teachandlearning/">
+<meta property="og:url" content="https://workshop.harryhsieh.com/teachandlearning/">
+<meta property="og:image" content="https://workshop.harryhsieh.com/teachandlearning/og.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="回到教與學的本質｜系列工作坊">
+<meta property="og:description" content="11/21 洪逸文老師、11/29 黃禮宏老師。兩個上午，帶著你自己的課來，帶著改好的設計回去。">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a1530">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a1530'/%3E%3Crect x='7' y='7' width='8' height='8' rx='2' fill='%231aae39'/%3E%3Crect x='17' y='17' width='8' height='8' rx='2' fill='%23dd5b00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#5645d4; --primary-p:#4534b3;
+  --navy:#0a1530; --navy-mid:#1a2a52;
+  --link:#0075de;
+  --orange:#dd5b00; --orange-deep:#793400; --green:#1aae39; --green-deep:#0f6b24;
+  --pink:#ff64c8; --purple:#7b3ff2; --teal:#2a9d99; --yellow:#f5d75e;
+  --peach:#ffe8d4; --mint:#d9f3e1; --lavender:#e6e0f5; --sky:#dcecfa; --rose:#fde0ec;
+  --yellow-bold:#f9e79f; --yellow-t:#fef7d6;
+  --canvas:#fff; --surface:#f6f5f4; --surface-soft:#fafaf9;
+  --hair:#e5e3df; --hair-soft:#ede9e4; --hair-strong:#c8c4be;
+  --ink:#1a1a1a; --charcoal:#37352f; --slate:#5d5b54; --steel:#787671; --stone:#a4a097;
+  --font:'Inter','Noto Sans TC',-apple-system,system-ui,'PingFang TC','Microsoft JhengHei',sans-serif;
+  --sh2:rgba(15,15,15,.08) 0 4px 12px 0; --sh3:rgba(15,15,15,.2) 0 24px 48px -8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--font);color:var(--charcoal);background:var(--canvas);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+h1,h2,h3,h4{color:var(--ink);font-weight:600}
+.nw{white-space:nowrap}
+
+/* buttons: 8px rectangles */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font:500 15px/1.3 var(--font);text-decoration:none;border:0;border-radius:8px;padding:11px 18px;cursor:pointer;white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-p)}
+.btn-secondary{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--hair-strong)}.btn-secondary:hover{background:var(--surface)}
+.btn-on-dark{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px var(--stone)}.btn-on-dark:hover{background:rgba(255,255,255,.08)}
+.btn-dark{background:#000;color:#fff}
+.btn-lg{padding:14px 22px;font-size:16px}
+
+/* tags */
+.tag{display:inline-block;font-size:13px;font-weight:600;line-height:1.4;padding:2px 8px;border-radius:6px;white-space:nowrap}
+.t-green{background:var(--mint);color:var(--green-deep)}
+.t-orange{background:var(--peach);color:var(--orange-deep)}
+.t-purple{background:var(--lavender);color:#391c57}
+.t-gray{background:var(--surface);color:var(--slate)}
+.t-sky{background:var(--sky);color:#0b4f8a}
+.t-yellow{background:var(--yellow-t);color:#6b5300}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--hair)}
+nav .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.logo i{width:24px;height:24px;border-radius:6px;background:var(--navy);position:relative;flex:none}
+.logo i::before,.logo i::after{content:"";position:absolute;width:7px;height:7px;border-radius:2px}
+.logo i::before{left:5px;top:5px;background:var(--green)}.logo i::after{right:5px;bottom:5px;background:var(--orange)}
+.links{display:flex;align-items:center;gap:4px;font-size:14px;font-weight:500}
+.links a.l{text-decoration:none;color:var(--charcoal);padding:8px 12px;border-radius:6px}
+.links a.l:hover{background:var(--surface)}
+.links .btn{margin-left:8px;padding:9px 16px;font-size:14px}
+@media (max-width:760px){.links a.l{display:none}}
+
+/* hero band */
+.hero{background:var(--navy);color:#fff;position:relative;padding:104px 0 0}
+.deco{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.dots{position:absolute;inset:0;pointer-events:none}
+.dots span{position:absolute;width:var(--s,18px);height:var(--s,18px);border-radius:5px;background:var(--c);transform:rotate(var(--r,0deg));opacity:.95}
+.wire{position:absolute;pointer-events:none;opacity:.22}
+.hero-in{position:relative;text-align:center;max-width:860px;margin:0 auto}
+.eyebrow{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 12px;font-size:14px;font-weight:500;color:#d7dbe6;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:6px 16px;border-radius:18px;margin-bottom:28px;max-width:100%}
+.eyebrow b{color:#fff;font-weight:600}
+.eyebrow b,.eyebrow span{white-space:nowrap}
+h1{color:#fff;font-size:clamp(34px,5.6vw,68px);line-height:1.15;letter-spacing:-.5px;margin-bottom:24px}
+.sub{text-wrap:balance;font-size:clamp(17px,1.8vw,19px);line-height:1.75;color:#c9cfdc;max-width:42em;margin:0 auto 36px}
+.sub em{font-style:normal;color:#fff;font-weight:600}
+.lede{text-wrap:balance;font-size:clamp(19px,2.2vw,24px);line-height:1.6;font-weight:600;color:#fff;max-width:36em;margin:0 auto 20px}
+@media (max-width:600px){.br-d{display:none}}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* database mockup */
+.mock{position:relative;max-width:980px;margin:72px auto -120px;background:#fff;border:1px solid var(--hair);border-radius:12px;box-shadow:var(--sh3);color:var(--charcoal);text-align:left;overflow:hidden}
+.mock-bar{display:flex;align-items:center;gap:8px;padding:10px 16px;border-bottom:1px solid var(--hair-soft);font-size:13px;color:var(--steel)}
+.mock-bar i{width:10px;height:10px;border-radius:50%;background:var(--hair)}
+.mock-bar span{margin-left:8px}
+.mock-body{padding:28px 32px 8px}
+.mock-title{font-size:26px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.mock-title .ic{width:30px;height:30px;border-radius:7px;background:var(--surface);display:grid;place-items:center}
+.mock-desc{font-size:14px;color:var(--steel);margin-bottom:18px}
+/* gallery view: speakers & topics up front */
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 0 24px}
+.gcard{display:flex;flex-direction:column;border:1px solid var(--hair);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;background:#fff;transition:box-shadow .15s}
+.gcard:hover{box-shadow:var(--sh2)}
+.gcard:hover .g-t{text-decoration:underline;text-underline-offset:4px}
+.g-cover{height:84px;background:var(--bg);position:relative}
+.g-cover img{position:absolute;left:20px;bottom:-44px;width:88px;height:88px;border-radius:50%;object-fit:cover;border:4px solid #fff}
+.g-body{padding:52px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.g-tags{display:flex;flex-wrap:wrap;gap:6px}
+.g-t{font-size:20px;line-height:1.4;letter-spacing:-.2px;margin-top:4px}
+.g-st{font-size:14px;color:var(--steel);margin-top:-4px}
+.g-sp{font-size:14px;line-height:1.6;color:var(--slate);padding-top:10px;border-top:1px solid var(--hair-soft);margin-top:4px}
+.g-sp b{display:block;font-size:16px;color:var(--ink);font-weight:600}
+.g-hl{display:inline-block;background:var(--yellow-bold);color:var(--ink);font-size:13px;font-weight:600;line-height:1.5;padding:3px 10px;border-radius:6px;margin-bottom:8px}
+.g-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;font-weight:500;color:var(--charcoal);margin-top:auto;padding-top:4px}
+.g-meta span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:2px;background:var(--primary);margin-right:6px;vertical-align:2px}
+
+/* sections */
+section{padding:96px 0}
+.after-hero{padding-top:200px}
+.surface{background:var(--surface)}
+.sec-head{max-width:720px;margin-bottom:48px}
+.sec-head.center{text-align:center;margin-left:auto;margin-right:auto}
+h2{text-wrap:balance;font-size:clamp(28px,3.8vw,44px);line-height:1.2;letter-spacing:-.5px;margin-bottom:16px}
+.lead{font-size:18px;line-height:1.7;color:var(--slate)}
+.lead b{color:var(--ink);font-weight:600}
+
+/* letter: notion callout */
+.callout{display:grid;grid-template-columns:40px 1fr;gap:16px;background:var(--yellow-t);border-radius:12px;padding:32px 36px;max-width:820px;margin:0 auto}
+.callout .ic{width:40px;height:40px;border-radius:8px;background:#fff;display:grid;place-items:center;box-shadow:var(--sh2)}
+.callout h2{font-size:clamp(24px,3vw,32px);margin-bottom:14px}
+.callout p{font-size:17px;line-height:1.9;margin-bottom:12px;color:var(--charcoal)}
+.callout .sign{font-size:14px;color:var(--slate);margin-top:16px;margin-bottom:0}
+
+/* comparison table */
+.cmp{background:#fff;border:1px solid var(--hair);border-radius:12px;overflow:hidden}
+.cmp-row{display:grid;grid-template-columns:200px 1fr 1fr 110px;align-items:center;border-bottom:1px solid var(--hair-soft)}
+.cmp-row:last-child{border-bottom:0}
+.cmp-row > *{padding:20px 22px}
+.cmp-row.head{background:var(--surface-soft);font-size:13px;font-weight:600;color:var(--steel)}
+.cmp-row.head > *{padding:12px 22px}
+.cmp .k{font-weight:600;color:var(--ink);font-size:15px}
+.cmp .from{color:var(--steel);font-size:15px}
+.cmp .to{color:var(--ink);font-size:17px;font-weight:600;line-height:1.55}
+.lab{display:none}
+
+/* sessions */
+.sessions{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.session{border-radius:12px;padding:36px;display:flex;flex-direction:column;background:var(--bg)}
+.s-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.session h3{text-wrap:balance;font-size:clamp(24px,2.6vw,30px);line-height:1.3;letter-spacing:-.3px;margin-bottom:4px}
+.session .st{font-size:17px;color:var(--slate);margin-bottom:22px}
+.session .q{font-size:16px;line-height:1.85;margin-bottom:24px}
+.inner{background:#fff;border-radius:12px;padding:22px 24px;margin-bottom:16px}
+.inner h4{font-size:15px;margin-bottom:10px}
+.learn{list-style:none}
+.learn li{display:grid;grid-template-columns:14px 1fr;gap:10px;padding:5px 0;font-size:15px;line-height:1.6}
+.learn li::before{content:"";width:6px;height:6px;margin-top:10px;border-radius:50%;background:var(--dot,var(--charcoal))}
+#s1 .learn{--dot:var(--green)} #s2 .learn{--dot:var(--orange)}
+.speaker{display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:start;margin-top:auto;padding-top:8px}
+.speaker img{width:72px;height:72px;border-radius:12px;object-fit:cover}
+.speaker b{display:block;color:var(--ink);font-size:17px}
+.speaker .r{font-size:14px;color:var(--slate);line-height:1.55;display:block;margin-bottom:8px}
+.speaker ul{list-style:none;font-size:13px;color:var(--slate);line-height:1.6}
+.speaker li{padding-left:12px;position:relative;margin-bottom:3px}
+.speaker li::before{content:"";position:absolute;left:0;top:.65em;width:4px;height:4px;border-radius:50%;background:var(--stone)}
+
+/* timeline table */
+.morning{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:start}
+.tl{background:#fff;border:1px solid var(--hair);border-radius:12px;overflow:hidden;list-style:none}
+.tl li{display:grid;grid-template-columns:128px 1fr auto;gap:16px;align-items:center;padding:14px 20px;border-bottom:1px solid var(--hair-soft);font-size:15px}
+.tl li:last-child{border-bottom:0}
+.tl time{color:var(--steel);font-variant-numeric:tabular-nums;font-size:14px}
+.tl b{color:var(--ink);font-weight:600}
+.tl small{display:block;color:var(--steel);font-size:13px}
+.tl .hl{background:var(--surface-soft)}
+
+/* register */
+.reg-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.pcard{background:#fff;border:1px solid var(--hair);border-radius:12px;padding:32px}
+.pcard h3{font-size:22px;line-height:1.4;margin:12px 0 18px}
+.props{display:grid;grid-template-columns:96px 1fr;gap:10px 12px;font-size:15px;margin-bottom:24px}
+.props dt{color:var(--steel);display:flex;align-items:center;gap:6px}
+.props dd{color:var(--ink)}
+.pcard .row{display:flex;gap:10px;flex-wrap:wrap}
+.banner{background:var(--yellow-bold);border-radius:12px;padding:40px;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:start}
+.banner h3{font-size:26px;line-height:1.35;margin-bottom:14px}
+.banner ol{padding-left:1.2em;font-size:16px;color:var(--charcoal)}
+.banner li{margin-bottom:8px}
+.banner a{color:var(--link);text-decoration:none}
+.banner a:hover{text-decoration:underline}
+.code{display:inline-block;font-size:14px;font-weight:600;background:rgba(255,255,255,.7);color:var(--ink);padding:1px 8px;border-radius:6px}
+.contact{margin-top:20px;font-size:14px;color:var(--charcoal);line-height:1.8}
+.way{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:10px}
+.alt{background:#fff;border-radius:12px;padding:28px;box-shadow:var(--sh2)}
+.alt h4{font-size:20px;margin-bottom:8px}
+.alt p{font-size:15px;color:var(--slate);margin-bottom:12px}
+.alt .note{font-size:14px;color:var(--ink);background:var(--yellow-t);border-radius:8px;padding:10px 12px;margin-bottom:18px}
+.alt .btn{width:100%;padding:13px;color:#fff;text-decoration:none}
+.pcard .code{background:var(--surface);font-variant-numeric:tabular-nums}
+.code-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.copy{font:inherit;font-size:13px;font-weight:500;color:var(--primary);background:#fff;border:1px solid var(--hair-strong);border-radius:6px;padding:3px 10px;cursor:pointer;line-height:1.5}
+.copy:hover{border-color:var(--primary)}
+.copy.done{color:var(--green-deep);border-color:var(--green);background:var(--mint)}
+.cal{display:inline-block;margin-top:14px;font-size:14px;color:var(--link);text-decoration:none}
+.cal:hover{text-decoration:underline}
+
+/* traffic */
+.traffic{display:grid;grid-template-columns:1fr 1.25fr;gap:32px;align-items:start}
+.tinfo{display:grid;gap:16px}
+.tcard{background:#fff;border:1px solid var(--hair);border-radius:12px;padding:24px 26px}
+.tcard h3{display:flex;align-items:center;gap:10px;font-size:18px;margin-bottom:10px}
+.tcard h3 .ic{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:var(--bg,var(--surface));font-size:16px}
+.tcard p{font-size:15px;line-height:1.75;color:var(--charcoal)}
+.tcard p + p{margin-top:6px}
+.tcard b{color:var(--ink);font-weight:600}
+.tcard a{color:var(--link);text-decoration:none;font-size:15px}
+.tcard a:hover{text-decoration:underline}
+.mrt{display:inline-block;background:#f39a1e;color:#fff;font-weight:700;font-size:13px;padding:1px 8px;border-radius:6px;margin-right:4px}
+.map{background:#fff;border:1px solid var(--hair);border-radius:12px;padding:18px;box-shadow:var(--sh2)}
+.map svg{display:block;width:100%;height:auto}
+.map .route{animation:march 1.2s linear infinite}
+@keyframes march{to{stroke-dashoffset:-36}}
+@media (prefers-reduced-motion:reduce){.map .route{animation:none}}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--charcoal);padding:12px 4px 2px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:30px;border-top:3px dashed var(--primary)}
+.legend .dot{width:12px;height:12px;border-radius:50%;border:0}
+@media (max-width:960px){.traffic{grid-template-columns:1fr}}
+@media (max-width:600px){.map{padding:10px}.tcard{padding:20px}}
+
+footer{border-top:1px solid var(--hair);padding:48px 0 64px;font-size:14px;color:var(--steel)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer b{color:var(--charcoal);font-weight:600}
+
+@media (max-width:960px){
+  .sessions,.reg-cards,.morning,.banner{grid-template-columns:1fr}
+  .morning{gap:28px}
+  .banner{padding:28px;gap:28px}
+  .cmp-row{grid-template-columns:1fr;gap:4px;padding:18px 20px}
+  .cmp-row > *{padding:0}
+  .cmp-row.head{display:none}
+  .cmp .tg{order:-1;margin-bottom:6px}
+  .lab{display:inline;font-size:12px;font-weight:600;color:var(--stone);margin-right:8px}
+}
+@media (max-width:600px){
+  .hero{padding:64px 0 0}
+  .mock{margin:48px -4px -80px}
+  .mock-body{padding:20px 16px 4px}
+  .mock-title{font-size:20px}
+  .gal{grid-template-columns:1fr;gap:12px;padding:16px 0 16px}
+  .g-t{font-size:18px}
+  .after-hero{padding-top:140px}
+  section{padding:72px 0}
+  .session,.pcard{padding:24px}
+  .callout{grid-template-columns:1fr;padding:24px}
+  .two{grid-template-columns:1fr}
+  .tl li{grid-template-columns:96px 1fr;padding:12px 16px}
+  .tl li .tag{display:none}
+  .props{grid-template-columns:80px 1fr}
+  .dots{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top"><i aria-hidden="true"></i>回到教與學的本質</a>
+    <div class="links">
+      <a class="l" href="#help">工作坊能陪你做什麼</a>
+      <a class="l" href="#sessions">兩場內容</a>
+      <a class="l" href="#morning">流程</a>
+      <a class="l" href="#traffic">交通資訊</a>
+      <a class="btn btn-primary" href="#register">報名資訊</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+<!-- ============ HERO BAND ============ -->
+<header class="hero">
+  <div class="deco" aria-hidden="true"><div class="dots">
+    <span style="left:7%;top:18%;--c:var(--green);--r:-8deg;--s:22px"></span>
+    <span style="left:14%;top:46%;--c:var(--yellow);--r:12deg;--s:14px"></span>
+    <span style="left:4%;top:70%;--c:var(--pink);--r:6deg;--s:18px"></span>
+    <span style="right:8%;top:16%;--c:var(--orange);--r:10deg;--s:22px"></span>
+    <span style="right:15%;top:40%;--c:var(--purple);--r:-12deg;--s:14px"></span>
+    <span style="right:5%;top:64%;--c:var(--teal);--r:4deg;--s:18px"></span>
+    <span style="left:24%;top:10%;--c:var(--teal);--r:20deg;--s:10px"></span>
+    <span style="right:26%;top:8%;--c:var(--pink);--r:-6deg;--s:10px"></span>
+  </div>
+  <svg class="wire" style="left:-40px;top:120px" width="320" height="320" viewBox="0 0 320 320" fill="none" stroke="#fff" stroke-width="1" aria-hidden="true"><path d="M0 40 Q160 0 320 60 M0 100 Q160 60 320 120 M0 160 Q160 120 320 180 M0 220 Q160 180 320 240 M40 0 Q0 160 60 320 M100 0 Q60 160 120 320 M160 0 Q120 160 180 320 M220 0 Q180 160 240 320"/></svg>
+  <svg class="wire" style="right:-60px;top:40px" width="300" height="300" viewBox="0 0 300 300" fill="none" stroke="#fff" stroke-width="1" aria-hidden="true"><circle cx="150" cy="150" r="140"/><circle cx="150" cy="150" r="100"/><circle cx="150" cy="150" r="60"/><path d="M10 150h280M150 10v280"/></svg></div>
+
+  <div class="wrap">
+    <div class="hero-in">
+      <p class="eyebrow"><b>回到教與學的本質系列工作坊</b><span>11/21・11/29</span><span>高雄市中正高中</span><span>綜合教學大樓一樓 圖書館／寰宇教室</span></p>
+      <h1><span class="nw">AI 時代，</span><br><span class="nw">更要回到</span><span class="nw">教與學的本質</span></h1>
+      <p class="lede">與其忙著追趕永遠追不完的技術進步，<br class="br-d">不如回到起點，重新思考教學的核心。</p>
+      <p class="sub">學校的價值，在於科技取代不了的東西：讓學生投入到忘記時間的學習經驗，以及能帶著走一輩子的思考習慣。兩場工作坊陪老師設計學生<em>「怎麼學」</em>，也決定他們<em>「成為什麼樣的思考者」</em>。</p>
+      <div class="cta">
+        <a class="btn btn-primary btn-lg" href="#register">查看報名資訊</a>
+        <a class="btn btn-on-dark btn-lg" href="#help">工作坊能陪你做什麼</a>
+      </div>
+    </div>
+
+    <!-- Notion-style database mockup -->
+    <div class="mock" role="region" aria-label="兩場工作坊一覽">
+      <div class="mock-bar"><i></i><i></i><i></i><span>回到教與學的本質 / 系列工作坊</span></div>
+      <div class="mock-body">
+        <div class="mock-title"><span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#37352f" stroke-width="2"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-1.5zM8 7h6"/></svg></span>系列工作坊</div>
+        <p class="mock-desc">高雄市政府教育局十二年國教課程發展團隊　11/21、11/29　高雄市立中正高中</p>
+        <div class="gal">
+          <a class="gcard" href="#s1" style="--bg:var(--mint)">
+            <div class="g-cover"><img src="/teachandlearning/img/hung.jpg" alt="洪逸文老師" width="88" height="88"></div>
+            <div class="g-body">
+              <div class="g-tags"><span class="tag t-green">第 1 場</span><span class="tag t-gray">11/21（六）09:00–12:30</span></div>
+              <h3 class="g-t">建構深度與沉浸互動的跨領域課堂設計</h3>
+              <div class="g-sp"><span class="g-hl">探究與實作課程北區推動中心 執行秘書</span><b>洪逸文 老師</b><span>師大附中地球科學教師，曾任師大附中教務主任</span></div>
+              <div class="g-meta"><span>研習 3 小時</span><span>限 25 人・先報名先參加</span></div>
+            </div>
+          </a>
+          <a class="gcard" href="#s2" style="--bg:var(--peach)">
+            <div class="g-cover"><img src="/teachandlearning/img/huang.jpg" alt="黃禮宏老師" width="88" height="88"></div>
+            <div class="g-body">
+              <div class="g-tags"><span class="tag t-orange">第 2 場</span><span class="tag t-gray">11/29（日）09:00–12:30</span></div>
+              <h3 class="g-t">當答案唾手可得，我們要教什麼？</h3>
+              <p class="g-st">AI 時代的思考習慣與課程設計</p>
+              <div class="g-sp"><span class="g-hl">暢銷書《全球人才搶著學！密涅瓦的思考習慣訓練》作者</span><b>黃禮宏 老師</b><span>決策思考力引導師、TEDxNDHU 2025 講者</span></div>
+              <div class="g-meta"><span>研習 3 小時</span><span>限 25 人・先報名先參加</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LETTER ============ -->
+<section class="after-hero">
+  <div class="wrap">
+    <div class="callout">
+      <span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#37352f" stroke-width="2"><path d="M4 4h16v12H8l-4 4z"/></svg></span>
+      <div>
+        <h2>為什麼想辦這個系列</h2>
+        <!-- EDIT：寫給老師的話，建議用你自己的語氣改寫 -->
+        <p>這幾年，老師被要求跟上很多東西：新課綱、新政策、新工具，現在又多了 AI。學生打開手機，幾秒就能拿到學習單的答案。</p>
+        <p>忙著追趕的時候，很容易忘了我們當初為什麼喜歡教書。也許是某一堂課，學生突然安靜下來、眼睛發亮地想弄懂一件事；也許是某個學生多年後回來說，他到現在還用著你教的思考方式。</p>
+        <p>這兩場工作坊不打算再給你一套新政策或新工具。我們想做的，是陪你把已經在教的課，往「學生更投入、想得更深」的方向調整一點點。</p>
+        <p class="sign">高雄市教育局 十二年國教課程發展團隊</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT HELPS ============ -->
+<section class="surface" id="help">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>兩個假日上午，陪你一起討論與學習</h2>
+      <p class="lead">每一場都是講座加實作。你會和不同科目的老師一起，學習跨領域課程設計，以及如何把密涅瓦的思考習慣用在自己的課程設計裡。和講者、其他老師一起，度過充實的上午。</p>
+    </div>
+    <div class="cmp" role="table" aria-label="工作坊帶來的改變">
+      <div class="cmp-row head" role="row"><span role="columnheader">面向</span><span role="columnheader">從</span><span role="columnheader">到</span><span role="columnheader">場次</span></div>
+      <div class="cmp-row" role="row"><span class="k" role="cell">備課的起點</span><span class="from" role="cell"><span class="lab">從</span>這個單元要教完哪些內容</span><span class="to" role="cell"><span class="lab">到</span>這個單元要讓學生想弄懂什麼問題</span><span class="tg" role="cell"><span class="tag t-green">第 1 場</span></span></div>
+      <div class="cmp-row" role="row"><span class="k" role="cell">學生在課堂上做的事</span><span class="from" role="cell"><span class="lab">從</span>聽講、抄筆記、寫學習單</span><span class="to" role="cell"><span class="lab">到</span>提問、觀察情境、用證據說服別人</span><span class="tg" role="cell"><span class="tag t-green">第 1 場</span></span></div>
+      <div class="cmp-row" role="row"><span class="k" role="cell">作業的樣子</span><span class="from" role="cell"><span class="lab">從</span>AI 幾秒就能代寫完成的作業</span><span class="to" role="cell"><span class="lab">到</span>AI 幫得上忙、卻替代不了思考的任務</span><span class="tg" role="cell"><span class="tag t-orange">第 2 場</span></span></div>
+      <div class="cmp-row" role="row"><span class="k" role="cell">思考力怎麼教</span><span class="from" role="cell"><span class="lab">從</span>希望學生「自己學會思考」</span><span class="to" role="cell"><span class="lab">到</span>把思考習慣拆成可以教、可以練的步驟</span><span class="tg" role="cell"><span class="tag t-orange">第 2 場</span></span></div>
+      <div class="cmp-row" role="row"><span class="k" role="cell">備課的方式</span><span class="from" role="cell"><span class="lab">從</span>一個人關起門來想</span><span class="to" role="cell"><span class="lab">到</span>和不同學校、不同科目的老師一起想</span><span class="tg" role="cell"><span class="tag t-purple">兩場都有</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SESSIONS ============ -->
+<section id="sessions">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>兩場工作坊</h2>
+      <p class="lead">兩場內容各自獨立，可以只選一場。兩場都來，能從「怎麼學」和「學什麼」兩個角度完整思考。</p>
+    </div>
+    <div class="sessions">
+      <article class="session" id="s1" style="--bg:var(--mint)">
+        <div class="s-top"><span class="tag" style="background:#fff;color:var(--green-deep)">第 1 場</span><span class="tag" style="background:#fff;color:var(--charcoal)">11/21（六）09:00–12:30</span><span class="tag" style="background:#fff;color:var(--charcoal)">高雄市立中正高中</span></div>
+        <h3>建構深度與沉浸互動的跨領域課堂設計</h3>
+        <p class="q">什麼樣的課，會讓學生忘了看時間？洪老師的課堂以提問、情境觀察和實作活動，引導學生自己探索問題、運用證據論證。這一場，他會拆解這樣的課是怎麼設計出來的。</p>
+        <div class="inner">
+          <h4>這一場，你會學到</h4>
+          <ul class="learn">
+            <li>怎麼讓一堂課有深度，讓學生沉浸其中、忘了看時間</li>
+            <li>從課本單元裡找出能讓學生好奇的真實情境或問題</li>
+            <li>設計讓學生自己觀察、蒐集證據、提出主張的探究活動</li>
+            <li>從一個好問題出發，連結不同學科，做出跨領域課程</li>
+          </ul>
+        </div>
+        <div class="speaker">
+          <img src="/teachandlearning/img/hung.jpg" alt="洪逸文老師" width="72" height="72" loading="lazy">
+          <div>
+            <b>洪逸文 老師</b>
+            <span class="r">國立臺灣師範大學附屬高級中學 地球科學教師</span>
+            <ul>
+              <li>國教署探究與實作課程北區推動中心執行秘書</li>
+              <li>曾任師大附中教務主任、高瞻計畫主持人、臺北市立陽明高中教師</li>
+              <li>專長：探究與實作教材教法、素養導向教學與評量、學習歷程檔案</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="session" id="s2" style="--bg:var(--peach)">
+        <div class="s-top"><span class="tag" style="background:#fff;color:var(--orange-deep)">第 2 場</span><span class="tag" style="background:#fff;color:var(--charcoal)">11/29（日）09:00–12:30</span><span class="tag" style="background:#fff;color:var(--charcoal)">高雄市立中正高中</span></div>
+        <h3>當答案唾手可得，我們要教什麼？</h3>
+        <p class="st">AI 時代的思考習慣與課程設計</p>
+        <p class="q">學生幾秒就能拿到答案，老師的工作正在從「給答案」，轉向「教學生提問、判斷與做決定」。黃老師會介紹密涅瓦大學的思考習慣（Habits of Mind），以及怎麼把它們放進日常的課。</p>
+        <div class="inner">
+          <h4>這一場，你會學到</h4>
+          <ul class="learn">
+            <li>當答案唾手可得，課程該把重心放在哪些能力上</li>
+            <li>幾個能直接用在中學課堂的密涅瓦思考習慣</li>
+            <li>看出一份作業真正想培養的能力，而不只是交出答案</li>
+            <li>把作業改寫成需要學生提問、比較、判斷的學習任務</li>
+          </ul>
+        </div>
+        <div class="speaker">
+          <img src="/teachandlearning/img/huang.jpg" alt="黃禮宏老師" width="72" height="72" loading="lazy">
+          <div>
+            <b>黃禮宏 老師</b>
+            <span class="r">《全球人才搶著學！密涅瓦的思考習慣訓練》作者</span>
+            <ul>
+              <li>決策思考力引導師，五年來帶過三百多位自費進修的公開班學員</li>
+              <li>TEDxNDHU 講者（2025）</li>
+              <li>曾受換日線 Crossing（天下雜誌）、《經貿透視》專訪</li>
+              <li>與李佳達、劉劭穎合著上述書籍（2022，究竟出版）</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MORNING ============ -->
+<section class="surface" id="morning">
+  <div class="wrap morning">
+    <div class="sec-head" style="margin-bottom:0">
+      <h2>一個上午怎麼過</h2>
+      <p class="lead">兩場流程相同。聽完講座，會留 90 分鐘讓你動手改自己的課，因為我們相信，老師要親手改過一次，回到教室才真的會用。</p>
+    </div>
+    <ol class="tl">
+      <li><time>08:40–09:00</time><span><b>報到</b></span><span></span></li>
+      <li><time>09:00–09:10</time><span><b>開場</b><small>系列理念說明（課程督學、謝孟翔老師）</small></span><span></span></li>
+      <li><time>09:10–10:30</time><span><b>專題講座</b><small>講者分享方法與課堂實例</small></span><span class="tag t-sky">80 分鐘</span></li>
+      <li><time>10:30–10:40</time><span><b>休息</b></span><span></span></li>
+      <li class="hl"><time>10:40–12:10</time><span><b>實作工作坊</b><small>分組設計你自己的課程單元，並互相分享</small></span><span class="tag t-purple">90 分鐘</span></li>
+      <li><time>12:10–12:30</time><span><b>綜合座談與回饋</b></span><span></span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ REGISTER ============ -->
+<section id="register">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>報名資訊</h2>
+      <p class="lead">可單場或兩場都報名，全程參與核予研習時數每場 3 小時。<b>每場限 25 人，先報名先參加，額滿即停止報名。</b></p>
+    </div>
+
+    <div class="reg-cards">
+      <div class="pcard">
+        <span class="tag t-green">第 1 場</span>
+        <h3>建構深度與沉浸互動的跨領域課堂設計</h3>
+        <dl class="props">
+          <dt>課程代碼</dt><dd class="code-row"><span class="code">5795897</span><button type="button" class="copy" data-code="5795897" aria-label="複製課程代碼 5795897">複製代碼</button></dd>
+          <dt>講者</dt><dd>洪逸文老師</dd>
+          <dt>日期</dt><dd>2026/11/21（六）09:00–12:30</dd>
+          <dt>地點</dt><dd>高雄市立中正高級中學<br>綜合教學大樓一樓<br>圖書館／寰宇教室</dd>
+          <dt>名額</dt><dd>每場 25 人，依報名先後錄取</dd>
+          <dt>報名截止</dt><dd><span class="tag t-yellow">11/17（二）</span></dd>
+        </dl>
+        <div class="row">
+          <a class="btn btn-primary" href="https://www4.inservice.edu.tw/index_login.aspx" target="_blank" rel="noopener">到進修網報名</a>
+          <a class="btn btn-secondary" href="/teachandlearning/register?s=1">沒有進修網帳號？在這裡報名</a>
+        </div>
+        <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%E5%BB%BA%E6%A7%8B%E6%B7%B1%E5%BA%A6%E8%88%87%E6%B2%89%E6%B5%B8%E4%BA%92%E5%8B%95%E7%9A%84%E8%B7%A8%E9%A0%98%E5%9F%9F%E8%AA%B2%E5%A0%82%E8%A8%AD%E8%A8%88%EF%BD%9C%E6%B4%AA%E9%80%B8%E6%96%87%E8%80%81%E5%B8%AB&dates=20261121T004000Z/20261121T043000Z&location=%E9%AB%98%E9%9B%84%E5%B8%82%E7%AB%8B%E4%B8%AD%E6%AD%A3%E9%AB%98%E7%B4%9A%E4%B8%AD%E5%AD%B8%20%E7%B6%9C%E5%90%88%E6%95%99%E5%AD%B8%E5%A4%A7%E6%A8%93%E4%B8%80%E6%A8%93%20%E5%9C%96%E6%9B%B8%E9%A4%A8%EF%BC%8F%E5%AF%B0%E5%AE%87%E6%95%99%E5%AE%A4&details=%E5%9B%9E%E5%88%B0%E6%95%99%E8%88%87%E5%AD%B8%E7%9A%84%E6%9C%AC%E8%B3%AA%E7%B3%BB%E5%88%97%E5%B7%A5%E4%BD%9C%E5%9D%8A%20%E7%AC%AC1%E5%A0%B4">加入 Google 行事曆</a>
+      </div>
+      <div class="pcard">
+        <span class="tag t-orange">第 2 場</span>
+        <h3>當答案唾手可得，我們要教什麼？</h3>
+        <dl class="props">
+          <dt>課程代碼</dt><dd class="code-row"><span class="code">5795898</span><button type="button" class="copy" data-code="5795898" aria-label="複製課程代碼 5795898">複製代碼</button></dd>
+          <dt>講者</dt><dd>黃禮宏老師</dd>
+          <dt>日期</dt><dd>2026/11/29（日）09:00–12:30</dd>
+          <dt>地點</dt><dd>高雄市立中正高級中學<br>綜合教學大樓一樓<br>圖書館／寰宇教室</dd>
+          <dt>名額</dt><dd>每場 25 人，依報名先後錄取</dd>
+          <dt>報名截止</dt><dd><span class="tag t-yellow">11/25（三）</span></dd>
+        </dl>
+        <div class="row">
+          <a class="btn btn-primary" href="https://www4.inservice.edu.tw/index_login.aspx" target="_blank" rel="noopener">到進修網報名</a>
+          <a class="btn btn-secondary" href="/teachandlearning/register?s=2">沒有進修網帳號？在這裡報名</a>
+        </div>
+        <a class="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%E7%95%B6%E7%AD%94%E6%A1%88%E5%94%BE%E6%89%8B%E5%8F%AF%E5%BE%97%EF%BC%8C%E6%88%91%E5%80%91%E8%A6%81%E6%95%99%E4%BB%80%E9%BA%BC%EF%BC%9F%EF%BD%9C%E9%BB%83%E7%A6%AE%E5%AE%8F%E8%80%81%E5%B8%AB&dates=20261129T004000Z/20261129T043000Z&location=%E9%AB%98%E9%9B%84%E5%B8%82%E7%AB%8B%E4%B8%AD%E6%AD%A3%E9%AB%98%E7%B4%9A%E4%B8%AD%E5%AD%B8%20%E7%B6%9C%E5%90%88%E6%95%99%E5%AD%B8%E5%A4%A7%E6%A8%93%E4%B8%80%E6%A8%93%20%E5%9C%96%E6%9B%B8%E9%A4%A8%EF%BC%8F%E5%AF%B0%E5%AE%87%E6%95%99%E5%AE%A4&details=%E5%9B%9E%E5%88%B0%E6%95%99%E8%88%87%E5%AD%B8%E7%9A%84%E6%9C%AC%E8%B3%AA%E7%B3%BB%E5%88%97%E5%B7%A5%E4%BD%9C%E5%9D%8A%20%E7%AC%AC2%E5%A0%B4">加入 Google 行事曆</a>
+      </div>
+    </div>
+
+    <div class="banner">
+      <div>
+        <h3>怎麼報名</h3>
+        <p class="way"><span class="tag t-purple">方式一</span>有全國教師在職進修資訊網帳號</p>
+        <ol>
+          <li>登入<a href="https://www4.inservice.edu.tw/index_login.aspx" target="_blank" rel="noopener">全國教師在職進修資訊網</a>。</li>
+          <li>搜尋課程代碼：第 1 場 <span class="code">5795897</span>、第 2 場 <span class="code">5795898</span>。</li>
+          <li>請學校准予公（差）假登記參加，課務自理。</li>
+        </ol>
+        <p class="contact">研習場地停車位有限，建議搭乘大眾運輸。<br>
+        有任何問題，請聯繫高雄市教育局 十二年國教課程發展團隊<br>陸韋翰老師、謝孟翔老師　<a href="tel:+88673590116,311">07-3590116 #311</a></p>
+      </div>
+      <div class="alt">
+        <p class="way"><span class="tag t-purple">方式二</span>沒有進修網帳號</p>
+        <h4>填寫線上報名表</h4>
+        <p>不需要登入，填寫姓名、服務單位與聯絡方式就能報名，資料會直接送到承辦團隊。</p>
+        <p class="note">名額有限，報名後請勿輕易取消，把位置留給真正能來的老師。</p>
+        <a class="btn btn-primary" href="/teachandlearning/register">前往線上報名</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="surface" id="traffic">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>交通資訊</h2>
+      <p class="lead">研習在高雄市立中正高中 <b>綜合教學大樓一樓 圖書館／寰宇教室</b>。學校停車位有限，建議搭捷運前往。</p>
+    </div>
+    <div class="traffic">
+      <div class="tinfo">
+        <div class="tcard">
+          <h3><span class="ic" style="--bg:var(--lavender)">📍</span>地址</h3>
+          <p>高雄市苓雅區中正一路 8 號<br>（高雄市立中正高級中學）</p>
+          <p><a href="https://www.google.com/maps/search/?api=1&amp;query=%E9%AB%98%E9%9B%84%E5%B8%82%E7%AB%8B%E4%B8%AD%E6%AD%A3%E9%AB%98%E7%B4%9A%E4%B8%AD%E5%AD%B8" target="_blank" rel="noopener">在 Google 地圖開啟 →</a></p>
+        </div>
+        <div class="tcard">
+          <h3><span class="ic" style="--bg:var(--peach)">🚇</span>搭捷運</h3>
+          <!-- EDIT：出口編號依學校粉專（衛武營站 1 號出口步行約 3 分鐘），請再到現場確認 -->
+          <p>搭<b>高雄捷運橘線</b>，在 <span class="mrt">O10</span><b>衛武營站</b>下車。</p>
+          <p>從 <b>1 號出口</b>出站，沿中正一路往國道一號方向步行，經過國軍高雄總醫院後就是學校大門，約 3–10 分鐘。</p>
+        </div>
+        <div class="tcard">
+          <h3><span class="ic" style="--bg:var(--mint)">🚶</span>進校門後</h3>
+          <p><b>步行：</b>從中正一路<b>大門</b>進入後直走，穿過<b>教學大樓中間的穿堂</b>，正前方就是<b>綜合教學大樓</b>，圖書館／寰宇教室在一樓。</p>
+          <p><b>開車：</b>進校門後往右，沿東側車道繞行，<b>請依警衛指示停車</b>。</p>
+        </div>
+      </div>
+      <figure class="map">
+        <svg viewBox="0 0 600 500" role="img" aria-labelledby="mapT mapD" font-family="Inter,'Noto Sans TC',sans-serif">
+          <title id="mapT">中正高中簡易平面圖</title>
+          <desc id="mapD">步行：從中正一路大門進校後直走，穿過教學大樓中間的穿堂，到綜合教學大樓一樓圖書館。開車：進校門後往右，沿東側車道繞行，依警衛指示停車。</desc>
+          <!-- 周邊道路 -->
+          <rect x="0" y="446" width="600" height="54" fill="#ebe8e3"/>
+          <text x="170" y="480" font-size="18" font-weight="600" fill="#5d5b54" text-anchor="middle">中正一路</text>
+          <rect x="0" y="0" width="34" height="446" fill="#ebe8e3"/>
+          <text font-size="16" font-weight="600" fill="#5d5b54" text-anchor="middle"><tspan x="17" y="196">國</tspan><tspan x="17" y="216">道</tspan><tspan x="17" y="236">一</tspan><tspan x="17" y="256">號</tspan></text>
+          <rect x="548" y="40" width="52" height="406" fill="#f3f1ee"/>
+          <text font-size="16" font-weight="600" fill="#787671" text-anchor="middle"><tspan x="574" y="186">國</tspan><tspan x="574" y="206">軍</tspan><tspan x="574" y="226">高</tspan><tspan x="574" y="246">雄</tspan><tspan x="574" y="266">總</tspan><tspan x="574" y="286">醫</tspan><tspan x="574" y="306">院</tspan></text>
+          <text x="58" y="70" font-size="15" font-weight="700" fill="#787671">↑ 北</text>
+          <!-- 校園 -->
+          <polygon points="44,120 220,120 340,40 532,40 532,436 44,436" fill="#fff" stroke="#c8c4be" stroke-width="2"/>
+          <rect x="516" y="44" width="14" height="390" fill="#efece8"/>
+          <rect x="58" y="140" width="92" height="280" rx="6" fill="#dcecfa"/>
+          <text x="104" y="286" font-size="16" font-weight="600" fill="#37352f" text-anchor="middle">球場</text>
+          <ellipse cx="212" cy="288" rx="48" ry="122" fill="#dcecfa" stroke="#a9c8e8" stroke-width="2"/>
+          <text x="212" y="294" font-size="16" font-weight="600" fill="#37352f" text-anchor="middle">運動場</text>
+          <polygon points="290,100 340,66 400,66 400,182 290,182" fill="#d9f3e1"/>
+          <text x="352" y="134" font-size="14" fill="#0f6b24" text-anchor="middle">綠地</text>
+          <!-- 教學大樓 -->
+          <rect x="276" y="214" width="232" height="160" rx="6" fill="#f6f5f4" stroke="#c8c4be" stroke-width="1.5"/>
+          <rect x="292" y="230" width="80" height="98" rx="4" fill="#d9f3e1"/>
+          <rect x="412" y="230" width="80" height="98" rx="4" fill="#d9f3e1"/>
+          <text x="332" y="284" font-size="13" fill="#0f6b24" text-anchor="middle">中庭</text>
+          <text x="452" y="284" font-size="13" fill="#0f6b24" text-anchor="middle">中庭</text>
+          <text x="332" y="360" font-size="16" font-weight="600" fill="#37352f" text-anchor="middle">教學大樓</text>
+          <!-- 綜合教學大樓（目的地） -->
+          <rect x="410" y="58" width="100" height="132" rx="8" fill="#e6e0f5" stroke="#5645d4" stroke-width="2.5"/>
+          <text x="460" y="88" font-size="15" font-weight="700" fill="#37352f" text-anchor="middle">綜合教學大樓</text>
+          <text x="460" y="128" font-size="15" font-weight="700" fill="#5645d4" text-anchor="middle">1F 圖書館</text>
+          <text x="460" y="150" font-size="15" font-weight="700" fill="#5645d4" text-anchor="middle">寰宇教室</text>
+          <!-- 大門 -->
+          <rect x="364" y="432" width="56" height="8" fill="#fff"/>
+          <text x="392" y="480" font-size="18" font-weight="700" fill="#1a1a1a" text-anchor="middle">大門</text>
+          <!-- 汽車路線：右側車道繞行 -->
+          <path d="M410 440 V424 H523 V70" fill="none" stroke="#787671" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 7"/>
+          <path d="M515 82 L523 66 L531 82" fill="none" stroke="#787671" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="420" y="384" width="92" height="22" rx="11" fill="#fff" stroke="#c8c4be"/>
+          <text x="466" y="400" font-size="13" font-weight="700" fill="#5d5b54" text-anchor="middle">汽車往右繞行</text>
+          <!-- 步行路線：直走穿過教學大樓中間 -->
+          <path d="M392 440 V204 H460 V194" fill="none" stroke="#5645d4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="12 6" opacity=".25"/>
+          <path class="route" d="M392 440 V204 H460 V194" fill="none" stroke="#5645d4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="12 6"/>
+          <text x="402" y="360" font-size="14" font-weight="700" fill="#5645d4">穿堂直走</text>
+          <circle cx="392" cy="440" r="9" fill="#1a1a1a" stroke="#fff" stroke-width="3"/>
+          <circle cx="460" cy="192" r="11" fill="#5645d4" stroke="#fff" stroke-width="3"/>
+        </svg>
+        <figcaption class="legend">
+          <span><i></i>步行路線（直走穿過教學大樓）</span>
+          <span><i style="border-top:3px dotted #787671"></i>汽車（往右繞行，依警衛指示停車）</span>
+          <span><i class="dot" style="background:#1a1a1a"></i>大門（中正一路）</span>
+          <span><i class="dot" style="background:#5645d4"></i>綜合教學大樓 1F 圖書館</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><b>主辦</b>　高雄市政府教育局</span>
+    <span><b>承辦</b>　高雄市政府教育局十二年國教課程發展團隊</span>
+  </div>
+</footer>
+
+
+<script>
+document.querySelectorAll('.copy').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var code = b.dataset.code;
+    var ok = function () {
+      b.textContent = '已複製 ✓'; b.classList.add('done');
+      setTimeout(function () { b.textContent = '複製代碼'; b.classList.remove('done'); }, 2000);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(code).then(ok, fallback);
+    } else { fallback(); }
+    function fallback() {
+      var t = document.createElement('textarea');
+      t.value = code; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); ok(); } catch (e) { b.textContent = code; }
+      document.body.removeChild(t);
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -260,6 +260,11 @@ async function main() {
       await cp(path.join(ROOT, d), path.join(OUT, d), { recursive: true });
   }
 
+  // workshop.harryhsieh.com 的頁面（vercel.json 依網域把該子網域改寫到 /workshop/）
+  const WORKSHOP = path.join(ROOT, "workshop", "teachandlearning");
+  if (existsSync(WORKSHOP))
+    await cp(WORKSHOP, path.join(OUT, "workshop", "teachandlearning"), { recursive: true });
+
   // 讀文章
   let files = [];
   try {
