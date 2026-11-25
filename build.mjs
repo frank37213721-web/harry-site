@@ -117,7 +117,7 @@ const HEADER = `
     <a class="brand" href="/"><span class="brand-zh">北極星</span><span class="brand-en">Polaris</span></a>
     <nav class="site-nav" aria-label="主選單">
       <a href="/#about">關於</a>
-      <a href="/#work">工作坊</a>
+      <a href="https://workshop.harryhsieh.com/teachandlearning/" target="_blank" rel="noopener">工作坊 ↗</a>
       <a href="/articles">文章</a>
       <a href="/#contact">聯絡</a>
     </nav>
