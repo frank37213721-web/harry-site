@@ -1,12 +1,14 @@
 /* =========================================================
    北極星 Polaris — 靜態網站建置腳本
-   把 content/articles/*.md 轉成文章頁，並產生文章列表頁。
-   靜態檔（index.html / styles.css / main.js / assets / admin）
-   原樣複製到 dist/。Vercel 以 dist/ 為輸出目錄。
+   - content/articles/*.md → 文章頁（/articles/<slug>）與文章列表（/articles）
+   - index.html：注入最新文章、替 CSS/JS 加上內容雜湊版本號
+   - styles.css / main.js / assets / admin 複製到 dist/
+   Vercel 以 dist/ 為輸出目錄。
    ========================================================= */
 
 import { readdir, readFile, writeFile, mkdir, rm, cp } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import crypto from "node:crypto";
 import path from "node:path";
 import { marked } from "marked";
 import matter from "gray-matter";
@@ -17,7 +19,10 @@ const CONTENT = path.join(ROOT, "content", "articles");
 
 const SITE = "北極星 Polaris";
 const FAVICON =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23faf6ee'/%3E%3Cpath d='M16 5l2.4 8.1L26.5 16l-8.1 2.9L16 27l-2.4-8.1L5.5 16l8.1-2.9z' fill='%23c9772f'/%3E%3C/svg%3E";
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23121212'/%3E%3Cpath d='M16 7l2 7 7 2-7 2-2 7-2-7-7-2 7-2z' fill='%23fafaf8'/%3E%3C/svg%3E";
+
+// 內容雜湊：CSS/JS 一改，網址就變，瀏覽器與 CDN 不會拿到舊檔
+let ASSET_V = "dev";
 
 marked.setOptions({ gfm: true, breaks: false });
 
@@ -78,8 +83,8 @@ const buildTocTree = (headings) => {
   return tree;
 };
 
-// 大綱做成可彈出/收起的固定面板（position: fixed），
-// 開關按鈕本身也是 fixed，捲動頁面時都不會被捲走。
+// 大綱做成可彈出/收起的固定面板（position: fixed）。
+// 放在文章內容「之後」：即使樣式沒載入，也不會排在標題前面。
 const renderToc = (headings) => {
   if (headings.length < 3) return "";
   const items = buildTocTree(headings)
@@ -109,10 +114,10 @@ const HEADER = `
 <a class="skip-link" href="#main">跳到主要內容</a>
 <header class="site-header" id="siteHeader">
   <div class="wrap header-inner">
-    <a class="brand" href="/"><span class="brand-star" aria-hidden="true">✦</span> ${SITE}</a>
+    <a class="brand" href="/"><span class="brand-zh">北極星</span><span class="brand-en">Polaris</span></a>
     <nav class="site-nav" aria-label="主選單">
-      <a href="/#about">關於我</a>
-      <a href="/#work">我在做的事</a>
+      <a href="/#about">關於</a>
+      <a href="/#work">工作坊</a>
       <a href="/articles">文章</a>
       <a href="/#contact">聯絡</a>
     </nav>
@@ -122,10 +127,14 @@ const HEADER = `
 const FOOTER = `
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <span class="brand-star" aria-hidden="true">✦</span>
-    <p>© <span id="year">2026</span> 謝孟翔 Harry ｜ ${SITE} ｜ 讓科學教育，回到好奇心與思考。</p>
+    <p>© <span id="year">2026</span> 謝孟翔 Harry</p>
+    <p>${SITE} ｜ 讓科學教育，回到好奇心與思考。</p>
   </div>
 </footer>`;
+
+// <head> 裡的小腳本：加上 .js 讓進場動畫只在有 JS 時啟用；
+// 3 秒後無論如何都顯示內容（main.js 載入失敗時的保險）。
+const JS_FLAG = `<script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("show-all")},3000)</script>`;
 
 const page = ({ title, description, content, ogType = "website" }) => `<!doctype html>
 <html lang="zh-Hant">
@@ -139,9 +148,10 @@ const page = ({ title, description, content, ogType = "website" }) => `<!doctype
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(description)}" />
 <meta property="og:locale" content="zh_TW" />
-<meta name="theme-color" content="#faf6ee" />
+<meta name="theme-color" content="#fdfdfc" />
 <link rel="icon" href="${FAVICON}" />
-<link rel="stylesheet" href="/styles.css" />
+${JS_FLAG}
+<link rel="stylesheet" href="/styles.css?v=${ASSET_V}" />
 </head>
 <body>
 ${HEADER}
@@ -149,7 +159,7 @@ ${HEADER}
 ${content}
 </main>
 ${FOOTER}
-<script src="/main.js" defer></script>
+<script src="/main.js?v=${ASSET_V}" defer></script>
 </body>
 </html>
 `;
@@ -165,23 +175,25 @@ const fmtDate = (v) => {
 
 const articlePage = (a) => {
   const toc = renderToc(a.headings);
+  // 摘要太長（多半是把內文貼進摘要欄）就不在文章頁重複顯示
+  const showSummary = a.summaryText && a.summaryText.length <= 180;
   const content = `
-  <article class="section article">${toc}
+  <article class="article">
     <div class="wrap narrow">
       <a class="back-link" href="/articles">← 回文章列表</a>
       <p class="post-meta reveal">${esc(a.dateText)}${a.tag ? ` ｜ ${esc(a.tag)}` : ""}</p>
       <h1 class="reveal">${esc(a.title)}</h1>
-      ${a.summary ? `<p class="post-summary reveal">${esc(a.summary)}</p>` : ""}
+      ${showSummary ? `<p class="post-summary reveal">${esc(a.summaryText)}</p>` : ""}
       <div class="article-body">
 ${a.html}
       </div>
       <a class="back-link" href="/articles">← 回文章列表</a>
-    </div>
+    </div>${toc}
   </article>`;
 
   return page({
     title: `${a.title}｜${SITE}`,
-    description: a.summary || a.title,
+    description: a.summaryText ? a.summaryText.slice(0, 150) : a.title,
     ogType: "article",
     content,
   });
@@ -191,52 +203,67 @@ const card = (a) => {
   const inner = `
         <time>${esc(a.dateText)}</time>
         <h2>${esc(a.title)}${a.external ? ' <span class="card-ext">外部連結 ↗</span>' : ""}</h2>
-        ${a.summary ? `<p>${esc(a.summary)}</p>` : ""}`;
+        ${a.summaryText ? `<p>${esc(a.summaryText)}</p>` : ""}`;
   return a.external
     ? `<li class="article-card"><a href="${esc(a.external)}" target="_blank" rel="noopener">${inner}</a></li>`
     : `<li class="article-card"><a href="/articles/${esc(a.slug)}">${inner}</a></li>`;
 };
 
+const articleList = (arts) =>
+  `<ul class="article-list">\n${arts.map(card).join("\n")}\n      </ul>`;
+
 const EMPTY_STATE = `
       <ul class="planned reveal">
         <li>我為什麼要用 AI 重新思考教學設計</li>
-        <li>十年教學經驗中，我學到最重要的一件事</li>
+        <li>十五年教學經驗中，我學到最重要的一件事</li>
         <li>從師鐸獎得主到教育機關：我對台灣科學教育的觀察</li>
         <li>「有趣」是怎麼設計出來的？PBL 教學的實務心得</li>
       </ul>
-      <p class="soon reveal"><span class="pulse" aria-hidden="true"></span>敬請期待——第一批文章正在整理中。</p>`;
+      <p class="soon reveal">敬請期待——第一批文章正在整理中。</p>`;
 
 const indexPage = (arts) =>
   page({
     title: `文章｜${SITE}`,
-    description: "謝孟翔 Harry 整理十年教學裡最重要的一些思考，寫成文章分享出來。",
+    description: "謝孟翔 Harry 整理十五年教學裡最重要的一些思考，寫成文章分享出來。",
     content: `
-  <section class="section">
+  <section class="page">
     <div class="wrap narrow">
-      <p class="eyebrow reveal">文章</p>
-      <h1 class="reveal">我正在寫的東西</h1>
-      <p class="reveal">我正在整理十年教學裡最重要的一些思考，寫成文章分享出來。</p>
-      ${
-        arts.length
-          ? `<ul class="article-list">\n${arts.map(card).join("\n")}\n      </ul>`
-          : EMPTY_STATE
-      }
+      <h1 class="page-title reveal">我正在寫的東西</h1>
+      <p class="page-sub reveal">我正在整理十五年教學裡最重要的一些思考，寫成文章分享出來。</p>
+      ${arts.length ? articleList(arts) : EMPTY_STATE}
     </div>
   </section>`,
   });
+
+const hash8 = (...buffers) => {
+  const h = crypto.createHash("md5");
+  for (const b of buffers) h.update(b);
+  return h.digest("hex").slice(0, 8);
+};
 
 async function main() {
   await rm(OUT, { recursive: true, force: true });
   await mkdir(OUT, { recursive: true });
 
+  // 版本號 = styles.css + main.js 的內容雜湊
+  ASSET_V = hash8(
+    await readFile(path.join(ROOT, "styles.css")),
+    await readFile(path.join(ROOT, "main.js"))
+  );
+
   // 靜態檔原樣複製
-  for (const f of ["index.html", "styles.css", "main.js"]) {
+  for (const f of ["styles.css", "main.js"]) {
     if (existsSync(path.join(ROOT, f))) await cp(path.join(ROOT, f), path.join(OUT, f));
   }
   for (const d of ["assets", "admin"]) {
     if (existsSync(path.join(ROOT, d)))
       await cp(path.join(ROOT, d), path.join(OUT, d), { recursive: true });
   }
+
+  // workshop.harryhsieh.com 的頁面（vercel.json 依網域把該子網域改寫到 /workshop/）
+  const WORKSHOP = path.join(ROOT, "workshop", "teachandlearning");
+  if (existsSync(WORKSHOP))
+    await cp(WORKSHOP, path.join(OUT, "workshop", "teachandlearning"), { recursive: true });
 
   // 讀文章
   let files = [];
@@ -260,9 +287,11 @@ async function main() {
     }
     const slug = String(data.slug || file.replace(/\.md$/, "")).trim();
     const { html, headings } = renderArticle(content);
+    const summary = data.summary || "";
     articles.push({
       title: data.title,
-      summary: data.summary || "",
+      summary,
+      summaryText: String(summary).replace(/\s+/g, " ").trim(),
       tag: data.tag || "",
       slug,
       external: data.external || "",
@@ -283,7 +312,15 @@ async function main() {
   await writeFile(path.join(OUT, "articles.html"), listHtml);
   await writeFile(path.join(OUT, "articles", "index.html"), listHtml);
 
-  console.log(`完成：${articles.length} 篇文章 → dist/`);
+  // 首頁：加版本號、注入最新三篇
+  let home = await readFile(path.join(ROOT, "index.html"), "utf8");
+  home = home
+    .replace('href="styles.css"', `href="/styles.css?v=${ASSET_V}"`)
+    .replace('src="main.js"', `src="/main.js?v=${ASSET_V}"`)
+    .replace("<!--LATEST_ARTICLES-->", articles.length ? articleList(articles.slice(0, 3)) : "");
+  await writeFile(path.join(OUT, "index.html"), home);
+
+  console.log(`完成：${articles.length} 篇文章，資源版本 ${ASSET_V} → dist/`);
 }
 
 main().catch((err) => {
