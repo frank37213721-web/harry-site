@@ -112,7 +112,7 @@ const renderToc = (headings) => {
 
 const HEADER = `
 <a class="skip-link" href="#main">跳到主要內容</a>
-<header class="site-header" id="siteHeader">
+<header class="site-header on-dark" id="siteHeader">
   <div class="wrap header-inner">
     <a class="brand" href="/"><span class="brand-zh">北極星</span><span class="brand-en">Polaris</span></a>
     <nav class="site-nav" aria-label="主選單">
@@ -180,11 +180,15 @@ const articlePage = (a) => {
   const showSummary = a.summaryText && a.summaryText.length <= 180;
   const content = `
   <article class="article">
-    <div class="wrap narrow">
-      <a class="back-link" href="/articles">← 回文章列表</a>
-      <p class="post-meta reveal">${esc(a.dateText)}${a.tag ? ` ｜ ${esc(a.tag)}` : ""}</p>
-      <h1 class="reveal">${esc(a.title)}</h1>
-      ${showSummary ? `<p class="post-summary reveal">${esc(a.summaryText)}</p>` : ""}
+    <header class="page-hero">
+      <div class="wrap narrow">
+        <a class="back-link" href="/articles">← 回文章列表</a>
+        <p class="post-meta reveal">${esc(a.dateText)}${a.tag ? ` ｜ ${esc(a.tag)}` : ""}</p>
+        <h1 class="reveal">${esc(a.title)}</h1>
+        ${showSummary ? `<p class="post-summary reveal">${esc(a.summaryText)}</p>` : ""}
+      </div>
+    </header>
+    <div class="wrap narrow article-main">
       <div class="article-body">
 ${a.html}
       </div>
@@ -227,10 +231,14 @@ const indexPage = (arts) =>
     title: `文章｜${SITE}`,
     description: "謝孟翔 Harry 整理十五年教學裡最重要的一些思考，寫成文章分享出來。",
     content: `
-  <section class="page">
+  <section class="page-hero">
     <div class="wrap list">
       <h1 class="page-title reveal">我正在寫的東西</h1>
       <p class="page-sub reveal">我正在整理十五年教學裡最重要的一些思考，寫成文章分享出來。</p>
+    </div>
+  </section>
+  <section class="page">
+    <div class="wrap list">
       ${arts.length ? articleList(arts) : EMPTY_STATE}
     </div>
   </section>`,
@@ -241,10 +249,14 @@ const softwarePage = () =>
     title: `軟體服務｜${SITE}`,
     description: "謝孟翔 Harry 為教學現場開發的軟體與網頁服務。",
     content: `
-  <section class="page">
+  <section class="page-hero">
     <div class="wrap list">
       <h1 class="page-title reveal">我開發的軟體與網頁服務</h1>
       <p class="page-sub reveal">從課堂現場遇到的問題出發，自己動手做的工具。</p>
+    </div>
+  </section>
+  <section class="page">
+    <div class="wrap list">
       <ul class="products">
         <li class="product card reveal">
           <div class="product-head">
