@@ -118,6 +118,7 @@ const HEADER = `
     <nav class="site-nav" aria-label="主選單">
       <a href="/#about">關於</a>
       <a href="https://workshop.harryhsieh.com/teachandlearning/" target="_blank" rel="noopener">工作坊 ↗</a>
+      <a href="/software">軟體服務</a>
       <a href="/articles">文章</a>
       <a href="/#contact">聯絡</a>
     </nav>
@@ -235,6 +236,33 @@ const indexPage = (arts) =>
   </section>`,
   });
 
+const softwarePage = () =>
+  page({
+    title: `軟體服務｜${SITE}`,
+    description: "謝孟翔 Harry 為教學現場開發的軟體與網頁服務。",
+    content: `
+  <section class="page">
+    <div class="wrap list">
+      <h1 class="page-title reveal">我開發的軟體與網頁服務</h1>
+      <p class="page-sub reveal">從課堂現場遇到的問題出發，自己動手做的工具。</p>
+      <ul class="products">
+        <li class="product card reveal">
+          <div class="product-head">
+            <h2>Inspira</h2>
+            <span class="status open">已上線</span>
+          </div>
+          <p class="product-tag">像 Keynote 一樣簡潔的互動簡報</p>
+          <p>學員掃碼就能投票、貼想法、上傳作品，並在策展區互相觀摩。內附「課堂火花」點子牆，讓每個人的想法在課堂上被看見。</p>
+          <p class="product-links">
+            <a class="btn" href="https://inspira.tw" target="_blank" rel="noopener">前往 Inspira ↗</a>
+          </p>
+        </li>
+      </ul>
+      <p class="soon reveal">更多服務整理中，陸續加入。</p>
+    </div>
+  </section>`,
+  });
+
 const hash8 = (...buffers) => {
   const h = crypto.createHash("md5");
   for (const b of buffers) h.update(b);
@@ -313,6 +341,10 @@ async function main() {
   const listHtml = indexPage(articles);
   await writeFile(path.join(OUT, "articles.html"), listHtml);
   await writeFile(path.join(OUT, "articles", "index.html"), listHtml);
+  const softwareHtml = softwarePage();
+  await mkdir(path.join(OUT, "software"), { recursive: true });
+  await writeFile(path.join(OUT, "software.html"), softwareHtml);
+  await writeFile(path.join(OUT, "software", "index.html"), softwareHtml);
 
   // 首頁：加版本號、注入最新三篇
   let home = await readFile(path.join(ROOT, "index.html"), "utf8");

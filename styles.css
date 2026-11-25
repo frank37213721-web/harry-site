@@ -264,6 +264,15 @@ section[id] { scroll-margin-top: 72px; }
 .planned li:last-child { border-bottom: 1px solid var(--line); }
 .soon { color: var(--ink-3); font-size: .92rem; }
 
+/* ---------- 軟體服務 ---------- */
+.products { list-style: none; margin: 1.6em 0 1.2em; padding: 0; display: grid; gap: 18px; }
+.product { padding: 28px 30px; }
+.product-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.product h2 { margin: 0; font-size: 1.5rem; font-weight: 700; }
+.product-tag { margin: .5em 0 .8em; font-weight: 600; color: var(--ink); }
+.product p { max-width: 40em; color: var(--ink-2); }
+.product-links { margin: 1.2em 0 0 !important; }
+
 /* ---------- 文章內文 ---------- */
 .article { padding: clamp(40px, 8vw, 72px) 0 clamp(64px, 10vw, 104px); }
 .article .back-link { display: inline-block; margin: 0 0 2.2em; font-size: .84rem; color: var(--ink-3); transition: color .2s var(--ease); }
