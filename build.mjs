@@ -148,7 +148,7 @@ const page = ({ title, description, content, ogType = "website" }) => `<!doctype
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(description)}" />
 <meta property="og:locale" content="zh_TW" />
-<meta name="theme-color" content="#fafaf8" />
+<meta name="theme-color" content="#fdfdfc" />
 <link rel="icon" href="${FAVICON}" />
 ${JS_FLAG}
 <link rel="stylesheet" href="/styles.css?v=${ASSET_V}" />
