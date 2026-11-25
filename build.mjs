@@ -287,9 +287,11 @@ async function main() {
     }
     const slug = String(data.slug || file.replace(/\.md$/, "")).trim();
     const { html, headings } = renderArticle(content);
-    const summary = data.summary || "";
+    // 標題／摘要欄位是純文字：把使用者誤貼的 Markdown 粗體、行內程式碼符號拿掉
+    const plain = (v) => String(v || "").replace(/\*\*|__|`/g, "");
+    const summary = plain(data.summary);
     articles.push({
-      title: data.title,
+      title: plain(data.title),
       summary,
       summaryText: String(summary).replace(/\s+/g, " ").trim(),
       tag: data.tag || "",
