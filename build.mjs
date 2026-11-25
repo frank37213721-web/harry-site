@@ -227,7 +227,7 @@ const indexPage = (arts) =>
     description: "謝孟翔 Harry 整理十五年教學裡最重要的一些思考，寫成文章分享出來。",
     content: `
   <section class="page">
-    <div class="wrap narrow">
+    <div class="wrap list">
       <h1 class="page-title reveal">我正在寫的東西</h1>
       <p class="page-sub reveal">我正在整理十五年教學裡最重要的一些思考，寫成文章分享出來。</p>
       ${arts.length ? articleList(arts) : EMPTY_STATE}
