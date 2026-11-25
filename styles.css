@@ -181,6 +181,10 @@ section[id] { scroll-margin-top: 72px; }
 .session-tag { padding-top: .2em; font-size: .8rem; color: var(--ink-3); }
 .sessions h4 { margin: 0 0 .3em; font-size: 1.02rem; }
 .sessions p { margin: 0; font-size: .94rem; }
+.sessions .session-when { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0 0 .35em; font-size: .8rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.status { padding: 0 9px; border: 1px solid var(--line-2); border-radius: 999px; font-size: .72rem; line-height: 1.7; color: var(--ink-3); }
+.status.open { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+.sessions .session-note { margin: .7em 0 0; font-size: .86rem; color: var(--ink-3); }
 
 .plain { list-style: none; margin: 0; padding: 0; }
 .plain li { padding: 14px 0; border-top: 1px solid var(--line); font-size: .97rem; color: var(--ink-2); }

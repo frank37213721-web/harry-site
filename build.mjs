@@ -215,7 +215,7 @@ const articleList = (arts) =>
 const EMPTY_STATE = `
       <ul class="planned reveal">
         <li>我為什麼要用 AI 重新思考教學設計</li>
-        <li>十年教學經驗中，我學到最重要的一件事</li>
+        <li>十五年教學經驗中，我學到最重要的一件事</li>
         <li>從師鐸獎得主到教育機關：我對台灣科學教育的觀察</li>
         <li>「有趣」是怎麼設計出來的？PBL 教學的實務心得</li>
       </ul>
@@ -224,12 +224,12 @@ const EMPTY_STATE = `
 const indexPage = (arts) =>
   page({
     title: `文章｜${SITE}`,
-    description: "謝孟翔 Harry 整理十年教學裡最重要的一些思考，寫成文章分享出來。",
+    description: "謝孟翔 Harry 整理十五年教學裡最重要的一些思考，寫成文章分享出來。",
     content: `
   <section class="page">
     <div class="wrap narrow">
       <h1 class="page-title reveal">我正在寫的東西</h1>
-      <p class="page-sub reveal">我正在整理十年教學裡最重要的一些思考，寫成文章分享出來。</p>
+      <p class="page-sub reveal">我正在整理十五年教學裡最重要的一些思考，寫成文章分享出來。</p>
       ${arts.length ? articleList(arts) : EMPTY_STATE}
     </div>
   </section>`,
